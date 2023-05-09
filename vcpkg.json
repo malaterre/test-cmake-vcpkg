@@ -1,0 +1,9 @@
+{
+  "name": "test-cmake-vcpkg",
+  "version-semver": "0.1.0",
+  "dependencies": [
+    {
+      "name": "boost-filesystem"
+    }
+  ]
+}
