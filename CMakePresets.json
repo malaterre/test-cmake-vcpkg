@@ -15,7 +15,7 @@
       "cacheVariables": {
         "CMAKE_TOOLCHAIN_FILE": {
           "type": "FILEPATH",
-          "value": "${sourceDir}/vcpkg/scripts/buildsystems/vcpkg.cmake"
+          "value": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
         },
         "VCPKG_FEATURE_FLAGS": "versions"
       }
@@ -37,18 +37,6 @@
       "configurePreset": "windows-release",
       "displayName": "Windows release",
       "description": "Build with Windows release settings"
-    }
-  ],
-  "testPresets": [],
-  "packagePresets": [
-    {
-      "name": "windows-release",
-      "configurePreset": "windows-release",
-      "displayName": "Windows release",
-      "description": "Package with Windows release settings",
-      "generators": [
-        "ZIP"
-      ]
     }
   ]
 }

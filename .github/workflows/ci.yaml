@@ -1,0 +1,29 @@
+name: CI
+on: [push, pull_request]
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [windows-2019]
+        include:
+        - os: windows-2019
+          vcpkgCommitId: 'c9f906558f9bb12ee9811d6edc98ec9255c6cda5'
+    runs-on: ${{ matrix.os }}
+    env:
+      CMAKE_PRESET: windows-release
+    steps:
+      - name: Checkout Current Branch
+        uses: actions/checkout@v3
+        with:
+          submodules: true
+      - name: Run vcpkg
+        uses: lukka/run-vcpkg@v11
+        with:
+          vcpkgDirectory: '${{ runner.workspace }}/b/vcpkg'
+          vcpkgGitCommitId: '${{ matrix.vcpkgCommitId}}'
+      - name: Run CMake
+        uses: lukka/run-cmake@v10.5
+        with:
+          cmakeListsTxtPath: '${{ github.workspace }}/CMakeLists.txt'
+          configurePreset: '${{ env.CMAKE_PRESET }}'
+          buildPreset: '${{ env.CMAKE_PRESET }}'
